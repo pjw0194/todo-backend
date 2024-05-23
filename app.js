@@ -9,8 +9,8 @@ const MONGODB_URI_PROD = process.env.MONGODB_URI_PROD;
 
 const app = express();
 
-app.use(cors());
 app.use(bodyParser.json());
+app.use(cors());
 app.use("/api", indexRouter);
 
 const mongoURI = MONGODB_URI_PROD;
