@@ -26,10 +26,12 @@ const userSchema = Schema(
 userSchema.methods.toJSON = function () {
 	const obj = this._doc;
 	delete obj.password;
+	delete obj.updatedAt;
+	delete obj.__v;
 	return obj;
 };
 
-userSchema.methods.generateToken = () => {
+userSchema.methods.generateToken = function () {
 	const token = jwt.sign({ _id: this._id }, JWT_SECRET_KEY, {
 		expiresIn: "1h",
 	});
